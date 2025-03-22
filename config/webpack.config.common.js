@@ -6,7 +6,8 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 const helpers = require('./helpers');
 const TerserPlugin = require('terser-webpack-plugin');
 const isDev = process.env.NODE_ENV === 'development';
-const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin")
+// const GoogleFontsPlugin = require("@beyonk/google-fonts-webpack-plugin")
+const GoogleFontsPlugin = require('google-fonts-plugin')
 
 const webpackConfig = {
 	entry: {
@@ -106,6 +107,12 @@ const webpackConfig = {
 			template: 'index.html',
 			chunksSortMode: 'dependency'
 		}),
+
+		// new GoogleFontsPlugin({
+		// 	fonts: [
+		// 		{ family: "Source Sans Pro" },
+		// 	]
+		// })
 		new GoogleFontsPlugin({
 			fonts: [{
 					family: "Roboto",
@@ -115,10 +122,6 @@ const webpackConfig = {
 						'cyrillic'
 					]
 				},
-				{
-					family: 'Press Start 2P',
-					variants: ["400"]
-				},
 				
 				// {family: "Pixelar", variants: ['500']}
 			],
@@ -127,7 +130,8 @@ const webpackConfig = {
 				filename: "fonts.css",
 				formats: ["woff", "woff2", "ttf"],
 				path: "fonts/",
-				local: true
+				// local: true
+				// apiUrl: 'https://google-webfonts-helper.herokuapp.com/api/fonts'
 			}
 		})
 	]
